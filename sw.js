@@ -1,4 +1,4 @@
-const CACHE = 'bodybuilder-v1.03';
+const CACHE = 'bodybuilder-v1.04';
 
 // On install: pre-cache the app, then wait for user to approve update
 self.addEventListener('install', e => {
@@ -29,6 +29,8 @@ self.addEventListener('message', e => {
 // Fetch: cache first, update cache in background
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  // Never cache sw.js — browser must always fetch it fresh for update detection
+  if (e.request.url.includes('sw.js')) return;
   e.respondWith(
     caches.match(e.request).then(hit => {
       if (hit) return hit;

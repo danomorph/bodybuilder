@@ -690,7 +690,7 @@
       <div style="display:flex;align-items:center;gap:10px;">
         <div style="display:flex;align-items:baseline;gap:8px;">
           <div class="wordmark">BODY<span>BUILDER</span></div>
-          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.03</span>
+          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.04</span>
         </div>
         <button onclick="openDevNotes()" title="Dev notes" style="background:none;border:1px solid var(--i600);border-radius:5px;padding:3px 6px;cursor:pointer;display:flex;align-items:center;gap:3px;line-height:1;" id="devNotesBadge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--i400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -1302,6 +1302,12 @@
       <button class="btn-secondary" onclick="closeSheet('resetConfirmOv')">Cancel</button>
     </div>
   </div></div>
+
+  <!-- UPDATE BANNER -->
+  <div id="updateBanner" style="display:none;position:absolute;bottom:calc(70px + var(--sb));left:12px;right:12px;z-index:9000;background:var(--o700);border:1.5px solid var(--o500);border-radius:10px;padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;">
+    <div style="font-family:var(--fc);font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--o200);">↑ Update available</div>
+    <button onclick="applyUpdate()" style="background:var(--o500);border:none;border-radius:6px;padding:6px 14px;font-family:var(--fc);font-size:11px;font-weight:700;letter-spacing:1px;color:#fff;cursor:pointer;">RELOAD</button>
+  </div>
 
   <!-- DEV NOTES SHEET -->
   <div class="sheet-ov" id="devNotesOv"><div class="sheet" style="max-height:92vh;">
@@ -3812,7 +3818,7 @@ function openRefRecipeAdd(){
 // TOAST
 // ══════════════════════════════════════════════════
 let toastTimer;
-function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.style.cursor='';el.style.background='';el.style.color='';el.onclick=null;el.classList.add('show');clearTimeout(toastTimer);window._toastTimer=toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
+function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);window._toastTimer=toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
 
 // ══════════════════════════════════════════════════
 // PLATE ALGORITHM SERVICE v3
@@ -6100,7 +6106,7 @@ if ('serviceWorker' in navigator) {
 
       // Cache this page for offline use
       if ('caches' in window) {
-        const cache = await caches.open('bodybuilder-v1.03');
+        const cache = await caches.open('bodybuilder-v1.04');
         const existing = await cache.match(window.location.href);
         if (!existing) await cache.add(window.location.href).catch(() => {});
       }
@@ -6109,12 +6115,12 @@ if ('serviceWorker' in navigator) {
       function watchSW(sw) {
         sw.addEventListener('statechange', () => {
           if (sw.state === 'installed' && navigator.serviceWorker.controller) {
-            showUpdateToast(sw);
+            showUpdateBanner(sw);
           }
         });
       }
 
-      if (reg.waiting) showUpdateToast(reg.waiting);
+      if (reg.waiting) showUpdateBanner(reg.waiting);
       if (reg.installing) watchSW(reg.installing);
       reg.addEventListener('updatefound', () => watchSW(reg.installing));
 
@@ -6127,24 +6133,20 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-function showUpdateToast(sw) {
-  const el = document.getElementById('toast');
+let _updateSW = null;
+
+function showUpdateBanner(sw) {
+  _updateSW = sw;
+  const el = document.getElementById('updateBanner');
   if (!el) return;
-  clearTimeout(window._toastTimer);
-  el.textContent = '↑ Update available — tap to reload';
-  el.style.cursor = 'pointer';
-  el.style.pointerEvents = 'auto';
-  el.style.background = 'var(--o700)';
-  el.style.color = 'var(--o200)';
-  el.style.bottom = 'calc(80px + var(--sb, 0px))';
-  el.classList.add('show');
-  el.onclick = () => {
-    el.onclick = null;
-    el.style.pointerEvents = 'none';
-    el.textContent = 'Updating…';
-    sw.postMessage('SKIP_WAITING');
-  };
+  el.style.display = 'flex';
 }
+
+window.applyUpdate = function() {
+  const el = document.getElementById('updateBanner');
+  if (el) el.style.display = 'none';
+  if (_updateSW) _updateSW.postMessage('SKIP_WAITING');
+};
 </script>
 
 <!-- ═══════════════ REPEAT SCREEN ═══════════════ -->
@@ -6153,7 +6155,7 @@ function showUpdateToast(sw) {
   <div style="text-align:center;padding-top:8px;">
     <div style="display:inline-flex;align-items:baseline;gap:8px;">
       <div class="wordmark">BODY<span>BUILDER</span></div>
-      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.03</span>
+      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.04</span>
     </div>
     <div style="font-family:var(--fc);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--td);margin-top:4px;" id="repeatDate"></div>
   </div>
