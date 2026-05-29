@@ -1,4 +1,4 @@
-const CACHE = 'bodybuilder-v1';
+const CACHE = 'bodybuilder-v1.01';
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
