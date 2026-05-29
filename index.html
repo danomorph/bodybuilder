@@ -1484,6 +1484,7 @@ let dayState = {
   note: null,
   closedAt: null,
   dayTargets: null,
+  startedAt: null,
 };
 
 // ══════════════════════════════════════════════════
@@ -1599,6 +1600,7 @@ async function initStorage() {
   if (log.closedAt)  dayState.closedAt   = log.closedAt;
   if (log.mindset)   dayState.mindset    = log.mindset;
   if (log.note)      dayState.note       = log.note;
+  if (log.startedAt) dayState.startedAt  = log.startedAt;
 
   // Conditions (injuries / niggles) — persistent, not day-scoped
   healthConditions = (await Store.get(SK.conditions)) || [];
@@ -1629,6 +1631,7 @@ async function appStart() {
 
     // If today has an open log already in progress — skip repeat screen, go straight home
     const dayInProgress = !dayState.closedAt && (
+      dayState.startedAt !== null ||
       dayState.rest.morning !== null ||
       dayState.lifts.length > 0 ||
       dayState.meals.length > 0 ||
@@ -1643,6 +1646,9 @@ async function appStart() {
       rs.getBoundingClientRect();
       rs.style.transition = 'transform .45s cubic-bezier(.32,.72,0,1)';
     }
+
+    // Always render dev notes so the sheet has content and stays off-screen
+    devNotesRender();
 
     document.getElementById('startupCover').style.display = 'none';
   } catch(e) {
@@ -3338,7 +3344,7 @@ async function executeReset() {
     try { await Store.remove(SK.metaDays); } catch(e) {}
     try { await Store.remove(SK.liftPartial); } catch(e) {}
     try { await Store.remove(SK.devNotes); } catch(e) {}
-    dayState = {hydration:0,meals:[],lifts:[],rest:{naps:[],morning:null,evening:null},mindset:[],body:{measurements:[]},note:null,closedAt:null,dayTargets:null};
+    dayState = {hydration:0,meals:[],lifts:[],rest:{naps:[],morning:null,evening:null},mindset:[],body:{measurements:[]},note:null,closedAt:null,dayTargets:null,startedAt:null};
     partialSession = null; LS = null; _devNotes = []; updateDevNotesBadge();
   }
 
@@ -5894,7 +5900,7 @@ function triggerRepeat() {
   // Reset day state
   yesterdayStress = dayState.rest.evening?.stress || 1;
   yesterdayEveningLogged = !!(dayState.rest.evening?.stress);
-  dayState = {hydration:0,meals:[],lifts:[],rest:{naps:[],morning:null,evening:null},mindset:[],body:{measurements:[]},note:null,closedAt:null,dayTargets:null};
+  dayState = {hydration:0,meals:[],lifts:[],rest:{naps:[],morning:null,evening:null},mindset:[],body:{measurements:[]},note:null,closedAt:null,dayTargets:null,startedAt:null};
   saveDayLog();
   // Show quote screen instantly — disable transition so there's no slide gap
   // where the home screen could show through
@@ -5912,8 +5918,8 @@ function triggerRepeat() {
 }
 
 function startDay() {
-  // Render home screen first so it's ready, then open morning log immediately.
-  // Quote screen slides away underneath — home screen is never visible raw.
+  dayState.startedAt = nowISO();
+  saveDayLog();
   homeRender();
   openMorningLog();
   const qs = document.getElementById('quoteScreen');
