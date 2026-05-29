@@ -1,4 +1,4 @@
-const CACHE = 'bodybuilder-v1.04';
+const CACHE = 'bodybuilder-v1.05';
 
 // Install: pre-cache new version, then take over immediately — no user action needed
 self.addEventListener('install', e => {
