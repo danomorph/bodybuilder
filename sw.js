@@ -1,4 +1,4 @@
-const CACHE = 'bodybuilder-v1.02';
+const CACHE = 'bodybuilder-v1.03';
 
 // On install: pre-cache the app, then wait for user to approve update
 self.addEventListener('install', e => {
