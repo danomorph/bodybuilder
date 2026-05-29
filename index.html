@@ -3812,7 +3812,7 @@ function openRefRecipeAdd(){
 // TOAST
 // ══════════════════════════════════════════════════
 let toastTimer;
-function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
+function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.style.cursor='';el.style.background='';el.style.color='';el.onclick=null;el.classList.add('show');clearTimeout(toastTimer);window._toastTimer=toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
 
 // ══════════════════════════════════════════════════
 // PLATE ALGORITHM SERVICE v3
@@ -6091,28 +6091,58 @@ function devNotesExport() {
 
 document.addEventListener('DOMContentLoaded', () => appStart());
 
-// Register service worker for offline use
+// Register service worker for offline use + update notifications
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
       const reg = await navigator.serviceWorker.register('./sw.js');
-      console.log('SW registered, state:', reg.active?.state);
       await navigator.serviceWorker.ready;
-      console.log('SW ready');
+
+      // Cache this page for offline use
       if ('caches' in window) {
-        const cache = await caches.open('bodybuilder-v1');
+        const cache = await caches.open('bodybuilder-v1.01');
         const existing = await cache.match(window.location.href);
-        console.log('Already cached:', !!existing);
-        if (!existing) {
-          await cache.add(window.location.href);
-          console.log('App cached successfully');
-          setTimeout(() => {
-            if (typeof showToast === 'function') showToast('App cached — server no longer needed ✓');
-          }, 500);
-        }
+        if (!existing) await cache.add(window.location.href).catch(() => {});
       }
-    } catch(e) { console.log('SW/cache error:', e); }
+
+      // Wire up update detection
+      function watchSW(sw) {
+        sw.addEventListener('statechange', () => {
+          if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+            showUpdateToast(sw);
+          }
+        });
+      }
+
+      if (reg.waiting) showUpdateToast(reg.waiting);
+      if (reg.installing) watchSW(reg.installing);
+      reg.addEventListener('updatefound', () => watchSW(reg.installing));
+
+      // When new SW takes control, reload to get fresh version
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+      });
+
+    } catch(e) { console.log('SW error:', e); }
   });
+}
+
+function showUpdateToast(sw) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  // Clear any existing auto-dismiss timer
+  clearTimeout(window._toastTimer);
+  el.textContent = '↑ Update available — tap to reload';
+  el.style.cursor = 'pointer';
+  el.style.background = 'var(--o700)';
+  el.style.color = 'var(--o200)';
+  el.style.bottom = 'calc(80px + var(--sb, 0px))';
+  el.classList.add('show');
+  el.onclick = () => {
+    el.onclick = null;
+    el.textContent = 'Updating…';
+    sw.postMessage('SKIP_WAITING');
+  };
 }
 </script>
 
