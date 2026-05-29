@@ -237,8 +237,8 @@
     .tov.open{background:rgba(0,0,0,.6);pointer-events:all;}
     .atray{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);border-radius:14px 14px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);z-index:51;max-height:92vh;display:flex;flex-direction:column;}
     .atray.open{transform:translateY(0);}
-    .sheet-ov{position:absolute;inset:0;background:rgba(0,0,0,0);pointer-events:none;transition:background .25s;z-index:60;overflow:hidden;}
-    .sheet-ov.open{background:rgba(0,0,0,.6);pointer-events:all;}
+    .sheet-ov{position:absolute;inset:0;background:rgba(0,0,0,0);pointer-events:none;transition:background .25s;z-index:60;overflow:hidden;visibility:hidden;}
+    .sheet-ov.open{background:rgba(0,0,0,.6);pointer-events:all;visibility:visible;}
     .sheet{position:absolute;left:0;right:0;bottom:0;background:var(--i750);border-top:1px solid var(--border);border-radius:14px 14px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);z-index:61;max-height:92vh;display:flex;flex-direction:column;}
     .sheet.open{transform:translateY(0);}
     /* Food form always on top of other sheets */
@@ -690,7 +690,7 @@
       <div style="display:flex;align-items:center;gap:10px;">
         <div style="display:flex;align-items:baseline;gap:8px;">
           <div class="wordmark">BODY<span>BUILDER</span></div>
-          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.0</span>
+          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.01</span>
         </div>
         <button onclick="openDevNotes()" title="Dev notes" style="background:none;border:1px solid var(--i600);border-radius:5px;padding:3px 6px;cursor:pointer;display:flex;align-items:center;gap:3px;line-height:1;" id="devNotesBadge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--i400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -6122,7 +6122,7 @@ if ('serviceWorker' in navigator) {
   <div style="text-align:center;padding-top:8px;">
     <div style="display:inline-flex;align-items:baseline;gap:8px;">
       <div class="wordmark">BODY<span>BUILDER</span></div>
-      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.0</span>
+      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.01</span>
     </div>
     <div style="font-family:var(--fc);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--td);margin-top:4px;" id="repeatDate"></div>
   </div>
