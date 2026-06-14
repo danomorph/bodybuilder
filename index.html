@@ -690,7 +690,7 @@
       <div style="display:flex;align-items:center;gap:10px;">
         <div style="display:flex;align-items:baseline;gap:8px;">
           <div class="wordmark">BODY<span>BUILDER</span></div>
-          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.4</span>
+          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.5</span>
         </div>
         <button onclick="openDevNotes()" title="Dev notes" style="background:none;border:1px solid var(--i600);border-radius:5px;padding:3px 6px;cursor:pointer;display:flex;align-items:center;gap:3px;line-height:1;" id="devNotesBadge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--i400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -1219,7 +1219,7 @@
     <div class="sheet-hdr"><div class="sheet-hdr-l"><div class="sheet-eyebrow">Settings</div><div class="sheet-title">IMPORT DATA</div></div><button class="btn-sheet-close" onclick="closeSheet('importOv')">✕</button></div>
     <div class="sheet-body" id="importOvBody"></div>
     <div class="sheet-footer" id="importOvFooter"></div>
-    <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importFileSelected(this)">
+    <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importRefFileSelected(this)">
   </div></div>
 
   <!-- Lift Reference — Exercise sheet -->
@@ -3119,7 +3119,7 @@ function importTriggerFile(type) {
   inp.click();
 }
 
-function importFileSelected(input) {
+function importRefFileSelected(input) {
   const file = input.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -6343,7 +6343,7 @@ window.applyUpdate = function() {
   <div style="text-align:center;padding-top:8px;">
     <div style="display:inline-flex;align-items:baseline;gap:8px;">
       <div class="wordmark">BODY<span>BUILDER</span></div>
-      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.4</span>
+      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.5</span>
     </div>
     <div style="font-family:var(--fc);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--td);margin-top:4px;" id="repeatDate"></div>
   </div>
