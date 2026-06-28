@@ -449,21 +449,59 @@
     /* ── LIFT SCREEN ── */
     .lift-screen{position:fixed;inset:0;background:var(--i800);z-index:80;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .35s cubic-bezier(.32,.72,0,1);}
     .lift-screen.open{transform:translateY(0);}
-    .lift-hdr{display:flex;flex-direction:column;gap:0;padding:calc(8px + var(--st)) 14px 6px;flex-shrink:0;border-bottom:1px solid var(--i700);}
-    .lift-hdr-row1{display:flex;align-items:center;gap:8px;margin-bottom:1px;}
-    .lift-hdr-row3{display:flex;align-items:center;gap:6px;margin-top:5px;padding-top:5px;border-top:1px solid var(--i700);}
-    .lift-hdr-row3 .lift-elapsed{font-family:var(--fd);font-size:16px;letter-spacing:2px;color:var(--o300);flex:1;text-align:center;}
-    .lift-hdr-l{flex:1;min-width:0;}
-    .lift-ex-name{font-family:var(--fd);font-size:21px;letter-spacing:2.5px;line-height:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    /* ── Workout strip (top) ── */
+    .lift-ws{display:flex;align-items:center;gap:6px;padding:calc(8px + var(--st)) 10px 7px;background:#131315;border-bottom:1px solid var(--i600);flex-shrink:0;}
+    .lift-ws-centre{flex:1;text-align:center;min-width:0;}
+    .lift-ws-name{font-family:var(--fd);font-size:15px;font-weight:700;letter-spacing:2px;color:var(--tm);text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .lift-ws-elapsed{font-family:var(--fd);font-size:12px;letter-spacing:1.5px;color:var(--o400);margin-top:1px;}
+    .lift-elapsed{font-family:var(--fd);font-size:12px;letter-spacing:1.5px;color:var(--o400);}
+    /* ── Exercise strip (below workout strip) ── */
+    .lift-es{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--i700);flex-shrink:0;}
+    .lift-es-centre{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;}
+    .lift-ex-name{font-family:var(--fd);font-size:21px;font-weight:700;letter-spacing:2.5px;line-height:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
     .lift-ex-meta{font-family:var(--fc);font-size:9px;color:var(--o500);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+    .lift-hdr-l{flex:1;min-width:0;}
     .lift-hdr-r{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-    .lift-elapsed{font-family:var(--fd);font-size:18px;letter-spacing:2px;color:var(--o300);}
-    .lift-nav-btn{background:none;border:1px solid var(--i600);color:var(--tm);font-family:var(--fc);font-size:11px;font-weight:600;padding:4px 9px;border-radius:5px;cursor:pointer;letter-spacing:.5px;}
+    .lift-nav-btn{background:none;border:1px solid var(--i600);color:var(--tm);font-family:var(--fc);font-size:13px;font-weight:600;padding:5px 10px;border-radius:5px;cursor:pointer;line-height:1;}
     .lift-nav-btn:active{background:var(--i700);}
     .lift-nav-btn.disabled{opacity:.3;pointer-events:none;}
-    .btn-hdr-lift{background:none;border:none;color:var(--tm);font-size:15px;cursor:pointer;padding:4px 6px;line-height:1;border-radius:5px;}
+    .btn-hdr-lift{background:none;border:none;color:var(--tm);font-size:18px;cursor:pointer;padding:4px 6px;line-height:1;border-radius:5px;flex-shrink:0;}
     .btn-hdr-lift:active{background:var(--i700);}
-    /* Rest timer */
+    .lift-hist-btn{background:none;border:1px solid var(--i600);color:var(--td);font-size:13px;padding:4px 7px;border-radius:5px;cursor:pointer;flex-shrink:0;line-height:1;}
+    .lift-hist-btn:active{background:var(--i700);}
+    .lift-hist-btn.open{background:var(--o900);border-color:var(--o700);color:var(--o300);}
+    /* ── History panel ── */
+    .lift-compare-section{padding:10px 14px 6px;}
+    .lift-compare-lbl{font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--td);margin-bottom:6px;}
+    .lift-compare-pills{display:flex;flex-wrap:wrap;gap:5px;}
+    .lift-cpill{font-family:var(--fc);font-size:12px;font-weight:600;border-radius:6px;padding:4px 0;white-space:nowrap;width:72px;text-align:center;display:inline-block;}
+    .lift-cpill-prev{color:var(--td);background:var(--i700);border:1px solid var(--i600);}
+    .lift-cpill-same{color:var(--tm);background:var(--i700);border:1px solid var(--i600);}
+    .lift-cpill-up{color:var(--o300);background:var(--o900);border:1px solid var(--o700);}
+    .lift-cpill-down{color:var(--warn);background:rgba(212,160,64,.08);border:1px solid rgba(212,160,64,.3);}
+    .lift-cpill-wu{color:var(--td);font-family:var(--fc);font-size:11px;}
+    .lift-compare-div{height:1px;background:var(--i700);margin:2px 14px;}
+    .lift-hist-panel{display:none;border-bottom:1px solid var(--i700);background:#131315;flex-shrink:0;}
+    .lift-hist-panel.open{display:flex;flex:1;min-height:0;overflow:hidden;}
+    .lift-hist-hdr{font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--td);padding:10px 14px 6px;}
+    .lift-hist-row{display:flex;align-items:baseline;padding:7px 14px;border-top:1px solid var(--i700);gap:10px;}
+    .lift-hist-date{font-family:var(--fc);font-size:11px;color:var(--td);flex-shrink:0;width:54px;}
+    .lift-hist-sets{flex:1;display:flex;flex-wrap:wrap;gap:4px;}
+    .lift-hist-set{font-family:var(--fc);font-size:11px;font-weight:600;color:var(--tm);background:var(--i700);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+    .lift-hist-set.top{color:var(--o300);background:var(--o900);border:1px solid var(--o800);}
+    .lift-hist-empty{font-family:var(--fc);font-size:12px;color:var(--td);padding:12px 14px;}
+    .lift-note-btn{background:none;border:1px solid var(--i600);color:var(--td);font-size:13px;padding:4px 7px;border-radius:5px;cursor:pointer;line-height:1;flex-shrink:0;}
+    .lift-note-btn:active{background:var(--i700);}
+    .lift-note-btn.has-note{border-color:var(--o700);background:var(--o900);}
+    .lift-tip-btn{background:none;border:1px solid var(--i600);color:var(--td);font-size:13px;padding:4px 7px;border-radius:5px;cursor:pointer;line-height:1;flex-shrink:0;}
+    .lift-tip-btn:active{background:var(--i700);}
+    .lift-tip-btn.has-tip{border-color:var(--o700);background:var(--o900);color:var(--o300);}
+    .lift-tip-panel{overflow:hidden;max-height:0;transition:max-height .2s ease;border-bottom:1px solid var(--i700);background:#131315;flex-shrink:0;}
+    .lift-tip-panel.open{max-height:200px;}
+    .lift-tip-inner{padding:12px 14px;}
+    .lift-tip-eyebrow{font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--o600);margin-bottom:6px;}
+    .lift-tip-text{font-family:var(--fc);font-size:13px;color:var(--tp);line-height:1.6;}
+    /* ── Rest timer */
     .lift-rest-strip{display:none;flex-shrink:0;background:rgba(141,176,80,.04);border-bottom:1px solid var(--i700);padding:7px 14px;align-items:center;gap:10px;}
     .lift-rest-strip.on{display:flex;}
     .lift-rest-l{flex:1;}
@@ -717,7 +755,7 @@
       <div style="display:flex;align-items:center;gap:10px;">
         <div style="display:flex;align-items:baseline;gap:8px;">
           <div class="wordmark">BODY<span>BUILDER</span></div>
-          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.7</span>
+          <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);">v1.8</span>
         </div>
         <button onclick="openDevNotes()" title="Dev notes" style="background:none;border:1px solid var(--i600);border-radius:5px;padding:3px 6px;cursor:pointer;display:flex;align-items:center;gap:3px;line-height:1;" id="devNotesBadge">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--i400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -951,42 +989,66 @@
 
   <!-- LIFT LOGGING SCREEN (full-screen) -->
   <div class="lift-screen" id="liftScreen">
-    <div class="lift-hdr">
-      <div class="lift-hdr-row1">
-        <div class="lift-ex-name" id="liftExName" style="flex:1;min-width:0;">—</div>
-        <button class="btn-hdr-lift" onclick="closeLiftScreen()">✕</button>
+    <!-- Workout strip — fixed top -->
+    <div class="lift-ws">
+      <button class="btn-hdr-lift" onclick="closeLiftScreen()" title="Pause">⏸</button>
+      <button class="btn-hdr-lift" id="liftTimerBtn" onclick="liftShowTimer()" title="Rest timer">⏱</button>
+      <div class="lift-ws-centre">
+        <div class="lift-ws-name" id="liftWsName">—</div>
+        <div class="lift-ws-elapsed" id="liftElapsed">00:00</div>
       </div>
-      <div class="lift-ex-meta" id="liftExMeta" style="font-family:var(--fc);font-size:9px;color:var(--o500);letter-spacing:1.5px;text-transform:uppercase;">—</div>
-      <div class="lift-hdr-row3">
-        <button class="lift-nav-btn" id="liftPrevBtn" onclick="liftNavExercise(-1)">‹ Prev</button>
-        <div class="lift-elapsed" id="liftElapsed">00:00</div>
-        <button class="btn-hdr-lift" id="liftTimerBtn" onclick="liftShowTimer()" title="Rest timer" style="font-size:17px;">⏱</button>
-        <button class="btn-hdr-lift" onclick="openExOverview()" title="Exercise list" style="font-size:17px;">☰</button>
-        <button class="lift-nav-btn" id="liftNextBtn" onclick="liftNavExercise(1)">Next ›</button>
+      <button class="btn-hdr-lift" onclick="openExOverview()" title="Exercise list">☰</button>
+      <button class="btn-hdr-lift" onclick="liftPauseFinish()" title="Finish session">⏹</button>
+    </div>
+    <!-- Exercise strip — fixed -->
+    <div class="lift-es">
+      <button class="lift-nav-btn" id="liftPrevBtn" onclick="liftNavExercise(-1)">‹</button>
+      <div class="lift-es-centre">
+        <div class="lift-ex-name" id="liftExName">—</div>
+        <div class="lift-ex-meta" id="liftExMeta">—</div>
+      </div>
+      <button class="lift-hist-btn" id="liftInfoBtn" onclick="liftToggleInfo()" title="Coach tip &amp; history">📋</button>
+      <button class="lift-nav-btn" id="liftNextBtn" onclick="liftNavExercise(1)">›</button>
+    </div>
+    <!-- Cues strip — always visible when cues exist -->
+    <div id="liftCuesWrap" style="display:none;flex-shrink:0;border-bottom:1px solid var(--i700);padding:6px 12px 5px;">
+      <div style="display:flex;align-items:flex-start;gap:6px;">
+        <div id="liftCuesStrip" style="flex:1;display:flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
+        <button class="lift-cues-edit-btn" onclick="liftOpenCueEditor()" style="flex-shrink:0;margin-top:1px;">✎</button>
       </div>
     </div>
-    <div class="lift-rest-strip" id="liftRestStrip">
-      <div class="lift-rest-l">
-        <div class="lift-rest-lbl">Rest</div>
-        <div class="lift-rest-ct" id="liftRestCt">2:00</div>
-        <div class="lift-rest-track"><div class="lift-rest-fill" id="liftRestFill" style="width:100%"></div></div>
-      </div>
-      <div class="lift-rest-adj">
-        <button class="lift-btn-adj" onclick="liftAdjRest(-15)">−15s</button>
-        <button class="lift-btn-adj" onclick="liftAdjRest(+15)">+15s</button>
-      </div>
-      <button class="lift-btn-skip" onclick="liftSkipRest()">SKIP</button>
-    </div>
-    <div class="lift-scroll">
-      <div id="liftCuesWrap" style="display:none;width:100%;padding:5px 12px 3px;box-sizing:border-box;">
-        <div style="display:flex;align-items:flex-start;gap:6px;">
-          <div id="liftCuesStrip" style="flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
-          <button class="lift-cues-edit-btn" onclick="liftOpenCueEditor()" style="flex-shrink:0;margin-top:1px;">✎</button>
+    <!-- Info panel — expands to fill space, scrolls internally -->
+    <div class="lift-hist-panel" id="liftInfoPanel" style="flex-direction:column;">
+      <div style="flex:1;overflow-y:auto;min-height:0;">
+        <div id="liftInfoTipSection" style="display:none;">
+          <div class="lift-tip-inner" style="border-bottom:1px solid var(--i700);">
+            <div class="lift-tip-eyebrow">Coach note</div>
+            <div class="lift-tip-text" id="liftTipText"></div>
+          </div>
         </div>
+        <div id="liftInfoCompare"></div>
       </div>
+    </div>
+    <!-- Rest timer anchor — lives here in normal flow, moves to bottom zone when info panel open -->
+    <div id="liftRestStripAnchor">
+      <div class="lift-rest-strip" id="liftRestStrip">
+        <div class="lift-rest-l">
+          <div class="lift-rest-lbl">Rest</div>
+          <div class="lift-rest-ct" id="liftRestCt">2:00</div>
+          <div class="lift-rest-track"><div class="lift-rest-fill" id="liftRestFill" style="width:100%"></div></div>
+        </div>
+        <div class="lift-rest-adj">
+          <button class="lift-btn-adj" onclick="liftAdjRest(-15)">−15s</button>
+          <button class="lift-btn-adj" onclick="liftAdjRest(+15)">+15s</button>
+        </div>
+        <button class="lift-btn-skip" onclick="liftSkipRest()">SKIP</button>
+      </div>
+    </div>
+    <!-- Normal session content — set list + picker -->
+    <div class="lift-scroll" id="liftScrollArea">
       <div class="lift-set-list" id="liftSetList"></div>
     </div>
-    <div class="lift-plate-picker">
+    <div class="lift-plate-picker" id="liftPlatePickerEl">
       <div class="lift-picker-top" style="flex-direction:column;gap:5px;padding:7px 12px 5px;">
         <div style="display:flex;align-items:center;gap:7px;width:100%;">
           <div class="lift-picker-wt">
@@ -1026,6 +1088,17 @@
         <div class="lift-palette-section" id="liftPaletteSection"></div>
       </div>
     </div>
+    <!-- FIXED BOTTOM ZONE — active set bar + rest timer (when panel open) + action button -->
+    <div id="liftBottomZone" style="display:none;flex-shrink:0;background:var(--bg);">
+      <div id="liftActiveSetBar" style="display:none;padding:10px 14px;border-top:1px solid var(--i700);background:rgba(141,176,80,.04);">
+        <div style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--o600);margin-bottom:2px;">Active set</div>
+        <div id="liftActiveSetBarText" style="font-family:var(--fd);font-size:20px;letter-spacing:2px;color:var(--tp);">—</div>
+      </div>
+      <div id="liftRestZoneSlot"></div>
+      <div style="padding:10px 14px;border-top:1px solid var(--i700);">
+        <button class="btn-primary" id="liftInfoActionBtn" onclick="liftInfoAction()" style="width:100%;">START EXERCISE</button>
+      </div>
+    </div>
   </div>
   <!-- Exercise overview tray -->
   <div class="sheet-ov" id="exOverviewOv" style="z-index:85;"><div class="sheet" style="z-index:86;max-height:96vh;" id="exOverviewSheet">
@@ -1043,22 +1116,87 @@
     <div style="padding:8px 14px;"><input class="field-input" id="exPickerSearch" placeholder="Search exercises…" oninput="renderExPicker()" style="width:100%;font-size:16px;"></div>
     <div class="sheet-body" id="exPickerBody" style="padding:0;"></div>
   </div></div>
-  <!-- Finish warning sheet -->
+  <!-- Set note sheet -->
+  <div class="sheet-ov" id="setNoteOv" style="z-index:87;"><div class="sheet" style="z-index:88;">
+    <div class="t-hdl"></div>
+    <div class="sheet-hdr">
+      <div class="sheet-hdr-l">
+        <div class="sheet-eyebrow" id="setNoteLabel">Set note</div>
+        <div class="sheet-title">ADD NOTE</div>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <textarea id="setNoteInput" class="rest-notes-inp" placeholder="e.g. felt strong, grip slipping, left side lagging…" rows="4" style="width:100%;box-sizing:border-box;font-size:16px;"></textarea>
+    </div>
+    <div class="sheet-footer" style="flex-direction:column;gap:8px;">
+      <button class="btn-primary" onclick="liftSaveSetNote()">SAVE NOTE</button>
+      <button class="btn-secondary" onclick="liftClearSetNote()">Clear note</button>
+    </div>
+  </div></div>
+
+  <!-- Pause sheet -->
+  <div class="sheet-ov" id="pauseOv" style="z-index:85;"><div class="sheet" style="z-index:86;">
+    <div class="t-hdl"></div>
+    <div class="sheet-hdr">
+      <div class="sheet-hdr-l">
+        <div class="sheet-eyebrow">Session</div>
+        <div class="sheet-title" id="pauseWorkoutName">SESSION</div>
+        <div class="sheet-sub" id="pauseMeta"></div>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div class="lift-finish-warn-opt" onclick="liftPauseGoHome()">
+        <div class="lift-finish-warn-opt-icon">🏠</div>
+        <div>
+          <div class="lift-finish-warn-opt-lbl">Go to home screen</div>
+          <div class="lift-finish-warn-opt-sub">Session stays live. Return anytime by tapping Lift.</div>
+        </div>
+      </div>
+      <div class="lift-finish-warn-opt" onclick="liftPauseFinish()">
+        <div class="lift-finish-warn-opt-icon">✓</div>
+        <div>
+          <div class="lift-finish-warn-opt-lbl">Finish session</div>
+          <div class="lift-finish-warn-opt-sub">Review your session and save.</div>
+        </div>
+      </div>
+      <div class="lift-finish-warn-opt" onclick="closeSheet('pauseOv')">
+        <div class="lift-finish-warn-opt-icon">↩</div>
+        <div>
+          <div class="lift-finish-warn-opt-lbl">Keep going</div>
+          <div class="lift-finish-warn-opt-sub">Return to the session.</div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <!-- Session summary sheet -->
   <div class="sheet-ov" id="finishWarnOv" style="z-index:85;"><div class="sheet" style="z-index:86;" id="finishWarnSheet">
     <div class="t-hdl"></div>
-    <div class="sheet-hdr"><div class="sheet-hdr-l"><div class="sheet-eyebrow">Session</div><div class="sheet-title">FINISH SESSION?</div><div class="sheet-sub" id="finishWarnSub">Some sets are not logged.</div></div></div>
-    <div class="sheet-body">
-      <div class="lift-finish-warn-opt" onclick="liftFinishAnyway()">
-        <div class="lift-finish-warn-opt-icon">✓</div>
-        <div><div class="lift-finish-warn-opt-lbl">Finish anyway</div><div class="lift-finish-warn-opt-sub">Unlogged programme sets are marked as skipped. Added unlogged sets are removed. Session saved as complete.</div></div>
+    <div class="sheet-hdr">
+      <div class="sheet-hdr-l">
+        <div class="sheet-eyebrow">Session complete</div>
+        <div class="sheet-title" id="sumWorkoutName">WORKOUT</div>
+        <div class="sheet-sub" id="sumMeta"></div>
       </div>
-      <div class="lift-finish-warn-opt" id="finishWarnPartialOpt" onclick="liftSaveAsPartial()">
-        <div class="lift-finish-warn-opt-icon">⏸</div>
-        <div><div class="lift-finish-warn-opt-lbl">Save as partial</div><div class="lift-finish-warn-opt-sub">Session stays open. Resume from where you left off next time you tap Lift.</div></div>
+    </div>
+    <div class="sheet-body" id="sumBody" style="padding-bottom:0;">
+      <!-- Exercise recap injected here -->
+      <div id="sumExList" style="margin-bottom:14px;"></div>
+      <!-- Flags (skipped sets warning) -->
+      <div id="sumFlags" style="display:none;margin-bottom:14px;padding:10px 12px;background:var(--i700);border-radius:8px;border-left:3px solid var(--warn);">
+        <div style="font-family:var(--fc);font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--warn);margin-bottom:3px;">HEADS UP</div>
+        <div id="sumFlagsText" style="font-family:var(--fc);font-size:12px;color:var(--tm);line-height:1.5;"></div>
       </div>
-      <div class="lift-finish-warn-opt" onclick="closeSheet('finishWarnOv')">
-        <div class="lift-finish-warn-opt-icon">↩</div>
-        <div><div class="lift-finish-warn-opt-lbl">Keep going</div><div class="lift-finish-warn-opt-sub">Return to the session.</div></div>
+      <!-- Notes -->
+      <div style="margin-bottom:14px;">
+        <div style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:3px;color:var(--td);margin-bottom:6px;">SESSION NOTES</div>
+        <textarea id="sumNotes" class="rest-notes-inp" placeholder="How did it feel? Anything to flag…" rows="3" style="width:100%;box-sizing:border-box;font-size:16px;"></textarea>
+      </div>
+    </div>
+    <div class="sheet-footer" style="flex-direction:column;gap:8px;">
+      <button class="btn-primary" onclick="liftFinishAnyway()">SAVE SESSION</button>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-secondary" id="sumPartialBtn" onclick="liftSummaryPause()" style="flex:1;">Pause session</button>
+        <button class="btn-secondary" onclick="closeSheet('finishWarnOv')" style="flex:1;">Keep going</button>
       </div>
     </div>
   </div></div>
@@ -1347,11 +1485,11 @@
     <div class="sheet-hdr"><div class="sheet-hdr-l"><div class="sheet-eyebrow" style="color:var(--red);">DANGER ZONE</div><div class="sheet-title">IMPORT DATA</div><div class="sheet-sub">Replaces all app data with an exported backup. This cannot be undone.</div></div><button class="btn-sheet-close" onclick="closeSheet('importDataOv')">✕</button></div>
     <div class="sheet-body" id="importDataBody">
       <div style="font-family:var(--fc);font-size:12px;color:var(--ts);line-height:1.7;margin-bottom:16px;">Select a Bodybuilder export JSON file. All existing data — logs, foods, recipes, workouts, exercises, targets and gym setup — will be replaced.</div>
-      <div id="importFileWrap" style="border:2px dashed var(--red-b);border-radius:9px;padding:20px 16px;text-align:center;cursor:pointer;margin-bottom:16px;" onclick="document.getElementById('importFileInput').click()">
+      <div id="importFileWrap" style="border:2px dashed var(--red-b);border-radius:9px;padding:20px 16px;text-align:center;cursor:pointer;margin-bottom:16px;" onclick="document.getElementById('importDataFileInput').click()">
         <div style="font-family:var(--fc);font-size:13px;font-weight:600;color:var(--red);margin-bottom:4px;">TAP TO SELECT FILE</div>
         <div style="font-family:var(--fc);font-size:11px;color:var(--td);" id="importFileName">No file selected</div>
       </div>
-      <input type="file" id="importFileInput" accept=".json" style="display:none;" onchange="importFileSelected(this)">
+      <input type="file" id="importDataFileInput" accept=".json" style="display:none;" onchange="importFileSelected(this)">
       <div style="font-family:var(--fc);font-size:12px;color:var(--ts);line-height:1.6;margin-bottom:10px;">Type <strong>IMPORT</strong> to confirm.</div>
       <input class="field-input" id="importConfirmInput" type="text" placeholder="Type IMPORT to confirm" oninput="importCheckInput()" style="font-size:16px;border-color:var(--red-b);">
     </div>
@@ -1530,6 +1668,7 @@ const SEED = {
 // ══════════════════════════════════════════════════
 let DB = {
   foods: [], recipes: [], exercises: [], equipment: {}, plateInventory: [], workouts: [], scales: [],
+  coachTips: {}, // { exerciseId: tipString }
 };
 
 // ══════════════════════════════════════════════════
@@ -1569,6 +1708,7 @@ const SK = {
   userFoods:    'user:foods',              // user-added foods (merged with SEED)
   userRecipes:  'user:recipes',            // user-added recipes (merged with SEED)
   scales:       'user:scales',             // body fat scale calibration profiles
+  coachTips:    'coach:tips',              // per-exercise coach notes { exerciseId: string }
 };
 
 function todayKey() {
@@ -1648,6 +1788,7 @@ async function initStorage() {
   DB.equipment    = gym.equipment    || SEED.equipment;
   DB.plateInventory = gym.plateInventory || SEED.plateInventory;
   DB.scales       = (await Store.get(SK.scales)) || [];
+  DB.coachTips    = (await Store.get(SK.coachTips)) || {};
   // Foods & recipes: SEED as base, merge user-added items on top
   const userFoods   = (await Store.get(SK.userFoods))   || [];
   const userRecipes = (await Store.get(SK.userRecipes)) || [];
@@ -1792,7 +1933,10 @@ function homeRender() {
 
   // LIFT button
   const liftBtn = document.getElementById('liftBtn');
-  if (dayState.lifts.length) {
+  if (LS) {
+    document.getElementById('liftBadge').textContent = '▶';
+    document.getElementById('liftDet').textContent = `${LS.workoutName} — tap to resume`;
+  } else if (dayState.lifts.length) {
     document.getElementById('liftBadge').textContent = String(dayState.lifts.length);
     const lastLift = dayState.lifts[dayState.lifts.length-1];
     document.getElementById('liftDet').textContent = `Done ${fmtTime(lastLift.endedAt||lastLift.startedAt)}`;
@@ -1994,7 +2138,17 @@ function buildDoneItems() {
     items.push({type:'meal', idx, name:label, time:fmtTime(m.loggedAt), sortISO:m.loggedAt, meta, editFn:`editMeal(${idx})`, delFn:`removeMeal(${idx})`});
   });
 
-  // Partial lift (in progress)
+  // Live session (paused, in memory)
+  if (LS) {
+    const liveLoggedSets = LS.exercises.reduce((n,e)=>n+(e.logged?.filter(l=>l!==null).length||0),0);
+    const liveTotalSets = LS.exercises.reduce((n,e)=>n+e.sets.filter(s=>!s.isWarmup).length,0);
+    const liveLoggedEx = LS.exercises.filter(e=>e.locked).length;
+    items.push({type:'liftLive', name:`Workout: ${LS.workoutName||'Lift'}`, time:fmtTime(LS.startedAt), sortISO:LS.startedAt,
+      meta:`Paused · ${liveLoggedEx}/${LS.exercises.length} exercises · ${liveLoggedSets}/${liveTotalSets} sets`, partial:true,
+      editFn:`openLiftTray()`, delFn:null});
+  }
+
+  // Partial lift (saved to storage)
   if (partialSession) {
     const savedAt = partialSession.savedAt || nowISO();
     const loggedEx = partialSession.exercises.filter(e=>e.locked).length;
@@ -2376,7 +2530,13 @@ function viewLiftSummary(idx) {
   const rows = ex.map(e => {
     const sets = (e.sets||[]).filter(s=>s.logged && !s.isWarmup);
     if (!sets.length) return '';
-    const setStr = sets.map((s,i)=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--i700);"><span style="font-family:var(--fc);font-size:11px;color:var(--td);">Set ${i+1}</span><span style="font-family:var(--fc);font-size:13px;color:var(--tp);">${s.weight||'—'}kg × ${s.reps||'—'}</span></div>`).join('');
+    const setStr = sets.map((s,i)=>`<div style="padding:5px 0;border-bottom:1px solid var(--i700);">
+        <div style="display:flex;justify-content:space-between;">
+          <span style="font-family:var(--fc);font-size:11px;color:var(--td);">Set ${i+1}</span>
+          <span style="font-family:var(--fc);font-size:13px;color:var(--tp);">${s.weight||'—'}kg × ${s.reps||'—'}</span>
+        </div>
+        ${s.note ? `<div style="font-family:var(--fc);font-size:11px;color:var(--td);margin-top:2px;font-style:italic;">${s.note}</div>` : ''}
+      </div>`).join('');
     return `<div style="margin-bottom:14px;"><div style="font-family:var(--fc);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--o400);margin-bottom:6px;text-transform:uppercase;">${e.name}</div>${setStr}</div>`;
   }).join('');
   const overlay = document.createElement('div');
@@ -2391,7 +2551,10 @@ function viewLiftSummary(idx) {
       </div>
       <button onclick="document.getElementById('liftSummaryOv').remove()" style="background:none;border:none;color:var(--td);font-size:22px;cursor:pointer;">✕</button>
     </div>
-    <div style="overflow-y:auto;padding:0 18px 32px;">${rows||'<div style="font-family:var(--fc);color:var(--td);">No sets logged</div>'}</div>
+    <div style="overflow-y:auto;padding:0 18px 32px;">
+      ${lift.notes ? `<div style="margin-bottom:16px;padding:10px 12px;background:var(--i700);border-radius:8px;border-left:3px solid var(--o700);"><div style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--td);margin-bottom:4px;">SESSION NOTES</div><div style="font-family:var(--fc);font-size:13px;color:var(--tm);line-height:1.5;">${lift.notes}</div></div>` : ''}
+      ${rows||'<div style="font-family:var(--fc);color:var(--td);">No sets logged</div>'}
+    </div>
   </div>`;
   overlay.addEventListener('click', e => { if (e.target===overlay) overlay.remove(); });
   document.body.appendChild(overlay);
@@ -3387,10 +3550,15 @@ function importRenderMain() {
         <div style="font-family:var(--fc);font-size:11px;color:var(--td);margin-bottom:10px;">Imports a recipe and its ingredients into Meal Reference.</div>
         <button class="btn-primary" onclick="importTriggerFile('recipe')">SELECT RECIPE FILE</button>
       </div>
-      <div>
+      <div style="margin-bottom:16px;">
         <div style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--td);margin-bottom:6px;">WORKOUT</div>
         <div style="font-family:var(--fc);font-size:11px;color:var(--td);margin-bottom:10px;">Imports a workout and its exercises into Lift Reference.</div>
         <button class="btn-secondary" onclick="importTriggerFile('workout')">SELECT WORKOUT FILE</button>
+      </div>
+      <div>
+        <div style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--td);margin-bottom:6px;">COACH TIPS</div>
+        <div style="font-family:var(--fc);font-size:11px;color:var(--td);margin-bottom:10px;">Imports per-exercise coaching notes from your coach. Replaces existing notes where included.</div>
+        <button class="btn-secondary" onclick="importTriggerFile('tips')">SELECT TIPS FILE</button>
       </div>
     </div>`;
   document.getElementById('importOvFooter').innerHTML = `<button class="btn-secondary" onclick="closeSheet('importOv')">Close</button>`;
@@ -3429,12 +3597,13 @@ function importShowError(msg) {
 }
 
 function importValidateAndPreview(data) {
-  if (!data || !['recipe','recipes','workout','workouts'].includes(data.type)) {
+  if (!data || !['recipe','recipes','workout','workouts','tips'].includes(data.type)) {
     importShowError('Invalid file — missing or unrecognised type field.'); return;
   }
 
   // Normalise: singular → plural so the rest of the logic handles one path
   const isRecipe = data.type === 'recipe' || data.type === 'recipes';
+  const isWorkout = data.type === 'workout' || data.type === 'workouts';
   const normalized = { ...data };
   if (data.type === 'recipe')  { normalized.type = 'recipes'; normalized.recipes  = [data.recipe];  }
   if (data.type === 'workout') { normalized.type = 'workouts'; normalized.workouts = [data.workout]; }
@@ -3486,7 +3655,7 @@ function importValidateAndPreview(data) {
       `<button class="btn-primary" onclick="importConfirm()">IMPORT ${payloads.length} RECIPE${payloads.length!==1?'S':''}</button>
        <button class="btn-secondary" onclick="importRenderMain()">Cancel</button>`;
 
-  } else {
+  } else if (isWorkout) {
     const payloads = normalized.workouts || [];
     if (!payloads.length) { importShowError('No workouts found in file.'); return; }
     const exercises = normalized.exercises || [];
@@ -3529,6 +3698,34 @@ function importValidateAndPreview(data) {
     document.getElementById('importOvFooter').innerHTML =
       `<button class="btn-primary" onclick="importConfirm()">IMPORT ${payloads.length} WORKOUT${payloads.length!==1?'S':''}</button>
        <button class="btn-secondary" onclick="importRenderMain()">Cancel</button>`;
+
+  } else if (data.type === 'tips') {
+    const tips = data.tips || [];
+    if (!tips.length) { importShowError('No tips found in file.'); return; }
+    const rowStyle = 'padding:10px 12px;background:var(--surface);margin-bottom:6px;border-radius:5px;';
+    const tipRows = tips.map(t => {
+      const ex = DB.exercises.find(e => e.id === t.exerciseId);
+      const exName = ex ? ex.name : `Unknown exercise (${t.exerciseId})`;
+      const action = !t.tip ? `<div style="font-family:var(--fc);font-size:9px;letter-spacing:1px;color:var(--td);">CLEAR</div>`
+        : DB.coachTips[t.exerciseId] ? `<div style="font-family:var(--fc);font-size:9px;letter-spacing:1px;color:var(--warn);">UPDATE</div>`
+        : `<div style="font-family:var(--fc);font-size:9px;letter-spacing:1px;color:var(--o400);">NEW</div>`;
+      return `<div style="${rowStyle}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${t.tip?'5px':'0'};">
+          <div style="font-family:var(--fc);font-size:13px;font-weight:600;color:var(--tm);">${exName}</div>
+          ${action}
+        </div>
+        ${t.tip ? `<div style="font-family:var(--fc);font-size:12px;color:var(--td);line-height:1.5;">${t.tip}</div>` : ''}
+      </div>`;
+    }).join('');
+    document.getElementById('importOvBody').innerHTML = `
+      <div>
+        <div style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--td);margin-bottom:8px;">COACH TIPS (${tips.length})</div>
+        ${tipRows}
+      </div>`;
+    _importPending = normalized;
+    document.getElementById('importOvFooter').innerHTML =
+      `<button class="btn-primary" onclick="importConfirm()">IMPORT ${tips.length} TIP${tips.length!==1?'S':''}</button>
+       <button class="btn-secondary" onclick="importRenderMain()">Cancel</button>`;
   }
 }
 
@@ -3567,7 +3764,7 @@ async function importConfirm() {
     showToast(`${n} recipe${n!==1?'s':''} imported ✓`);
     closeSheet('importOv');
 
-  } else {
+  } else if (data.type === 'workouts') {
     // Build one shared ID map for all exercises in the file
     const idMap = {};
     for (const ex of (data.exercises || [])) {
@@ -3594,6 +3791,23 @@ async function importConfirm() {
     await saveWorkouts();
     const n = data.workouts.length;
     showToast(`${n} workout${n!==1?'s':''} imported ✓`);
+    closeSheet('importOv');
+
+  } else if (data.type === 'tips') {
+    for (const t of (data.tips || [])) {
+      if (!t.exerciseId) continue;
+      if (!t.tip && !t.recommendedWeight) {
+        delete DB.coachTips[t.exerciseId];
+      } else {
+        DB.coachTips[t.exerciseId] = {
+          tip: t.tip || '',
+          recommendedWeight: t.recommendedWeight || null
+        };
+      }
+    }
+    await Store.set(SK.coachTips, DB.coachTips);
+    const n = data.tips.length;
+    showToast(`${n} coach tip${n!==1?'s':''} imported ✓`);
     closeSheet('importOv');
   }
 }
@@ -4365,6 +4579,24 @@ function closeRestTray() {
 // LIFT TRAY
 // ══════════════════════════════════════════════════
 function openLiftTray() {
+  // If a session is live in memory, go straight back to it
+  if (LS) {
+    // Restart elapsed timer — adjust startedAt to account for paused time
+    if (LS.pausedAt && LS.elapsedSecondsAtPause !== undefined) {
+      const pausedSeconds = Math.floor((Date.now() - new Date(LS.pausedAt).getTime()) / 1000);
+      // Shift startedAt forward by the time we were paused
+      const originalStart = new Date(LS.startedAt).getTime();
+      LS.startedAt = new Date(originalStart + pausedSeconds * 1000).toISOString();
+      LS.pausedAt = null;
+      LS.elapsedSecondsAtPause = null;
+    }
+    LS.elapsedTimer = setInterval(liftUpdateElapsed, 1000);
+    // Clear the partial store since we're back live
+    savePartial(null);
+    document.getElementById('liftScreen').classList.add('open');
+    liftRenderAll();
+    return;
+  }
   const wl = document.getElementById('liftWorkoutList');
   let html = '';
 
@@ -4466,6 +4698,7 @@ async function startLiftSession(workoutId) {
       sets: resolvedSets.map(s=>({...s, isOriginal:true})),
       logged: resolvedSets.map(()=>null),
       skipped: resolvedSets.map(()=>false),
+      setNotes: resolvedSets.map(()=>''),
       inputs: resolvedSets.map(s=>({
         weight: s.weight,
         reps: s.maxReps || exRef.maxReps || 10,
@@ -4512,7 +4745,7 @@ async function startLiftSession(workoutId) {
 
 function closeLiftScreen() {
   if (!LS) return;
-  const anyLogged = LS.exercises.some(ex=>ex.logged.some(l=>l!==null));
+  const anyLogged = LS.exercises.some(ex => ex.logged.some(l => l !== null));
   if (!anyLogged) {
     // Nothing logged — discard and close silently
     clearInterval(LS.elapsedTimer);
@@ -4522,18 +4755,218 @@ function closeLiftScreen() {
     homeRender();
     return;
   }
-  const totalOutstanding = LS.exercises.reduce((n,e)=>
-    n+e.sets.filter((s,i)=>!s.isWarmup&&e.logged[i]===null&&!e.skipped[i]).length, 0);
-  if (totalOutstanding === 0) {
-    // All working sets handled — show save confirmation only
-    document.getElementById('finishWarnSub').textContent = 'All sets done. Save this session?';
-    document.getElementById('finishWarnPartialOpt').style.display = 'none';
-  } else {
-    document.getElementById('finishWarnSub').textContent =
-      `${totalOutstanding} working set${totalOutstanding>1?'s':''} not logged.`;
-    document.getElementById('finishWarnPartialOpt').style.display = '';
+  // Pause timer — record how much time has elapsed so far
+  LS.pausedAt = nowISO();
+  LS.elapsedSecondsAtPause = Math.floor((Date.now() - new Date(LS.startedAt).getTime()) / 1000);
+  clearInterval(LS.elapsedTimer);
+  LS.elapsedTimer = null;
+  // Save state to partial store so it survives app close
+  saveLiveSessionToPartial();
+  document.getElementById('liftScreen').classList.remove('open');
+  homeRender();
+}
+
+function liftPauseGoHome() {
+  closeSheet('pauseOv');
+  document.getElementById('liftScreen').classList.remove('open');
+  homeRender();
+}
+
+function liftPauseFinish() {
+  if (!LS) return;
+  const anyLogged = LS.exercises.some(ex => ex.logged.some(l => l !== null));
+  if (!anyLogged) {
+    clearInterval(LS.elapsedTimer);
+    clearInterval(LS.restTimer);
+    document.getElementById('liftScreen').classList.remove('open');
+    LS = null;
+    savePartial(null);
+    homeRender();
+    return;
   }
-  _baseOpenSheet('finishWarnOv');
+  closeSheet('pauseOv');
+  liftOpenSummary();
+}
+
+// ── Set notes ──
+let _setNoteIdx = null;
+function liftOpenSetNote(idx) {
+  if (!LS) return;
+  _setNoteIdx = idx;
+  const ex = LS.exercises[LS.exIdx];
+  const existing = (ex.setNotes || [])[idx] || '';
+  const isWu = ex.sets[idx]?.isWarmup;
+  const setNum = ex.sets.filter((s,i)=>i<=idx&&s.isWarmup===isWu).length;
+  document.getElementById('setNoteLabel').textContent = isWu ? `Warmup ${setNum}` : `Working set ${setNum}`;
+  document.getElementById('setNoteInput').value = existing;
+  _baseOpenSheet('setNoteOv');
+}
+
+function liftSaveSetNote() {
+  if (!LS || _setNoteIdx === null) return;
+  const ex = LS.exercises[LS.exIdx];
+  if (!ex.setNotes) ex.setNotes = ex.sets.map(()=>'');
+  ex.setNotes[_setNoteIdx] = document.getElementById('setNoteInput').value.trim();
+  closeSheet('setNoteOv');
+  liftRenderSets();
+}
+
+function liftClearSetNote() {
+  if (!LS || _setNoteIdx === null) return;
+  const ex = LS.exercises[LS.exIdx];
+  if (ex.setNotes) ex.setNotes[_setNoteIdx] = '';
+  closeSheet('setNoteOv');
+  liftRenderSets();
+}
+
+
+// ── Info panel (coach tip + history) ──
+function liftSetInfoPanelMode(open) {
+  const scrollArea = document.getElementById('liftScrollArea');
+  const picker = document.getElementById('liftPlatePickerEl');
+  const bottomZone = document.getElementById('liftBottomZone');
+  const activeBar = document.getElementById('liftActiveSetBar');
+  const actionBtn = document.getElementById('liftInfoActionBtn');
+  const restStrip = document.getElementById('liftRestStrip');
+  const restAnchor = document.getElementById('liftRestStripAnchor');
+  const restSlot = document.getElementById('liftRestZoneSlot');
+
+  if (open) {
+    if (scrollArea) scrollArea.style.display = 'none';
+    if (picker) picker.style.display = 'none';
+    if (bottomZone) bottomZone.style.display = 'block';
+    // Move rest strip into bottom zone slot
+    if (restStrip && restSlot) restSlot.appendChild(restStrip);
+
+    // Active set bar
+    const ex = LS && LS.exercises[LS.exIdx];
+    const idx = ex && ex.activeSetIdx !== -1 ? ex.activeSetIdx : null;
+    const anyLogged = ex && ex.logged.some(l => l !== null);
+
+    if (idx !== null && ex && ex.logged[idx] === null && !ex.skipped[idx]) {
+      const s = ex.sets[idx];
+      const inp = ex.inputs[idx];
+      const isWu = s.isWarmup;
+      const wuSets = ex.sets.filter(s => s.isWarmup);
+      const workSets = ex.sets.filter(s => !s.isWarmup);
+      const setNum = isWu
+        ? wuSets.indexOf(ex.sets[idx]) + 1
+        : workSets.indexOf(ex.sets[idx]) + 1;
+      const label = isWu ? `Warmup ${setNum}` : `Set ${setNum}`;
+      if (activeBar) activeBar.style.display = '';
+      document.getElementById('liftActiveSetBarText').textContent =
+        `${label} · ${inp.weight}kg × ${inp.reps}`;
+    } else {
+      if (activeBar) activeBar.style.display = 'none';
+    }
+
+    if (actionBtn) actionBtn.textContent = anyLogged ? 'CONTINUE' : 'START EXERCISE';
+
+  } else {
+    if (scrollArea) scrollArea.style.display = '';
+    if (picker) picker.style.display = '';
+    if (bottomZone) bottomZone.style.display = 'none';
+    if (activeBar) activeBar.style.display = 'none';
+    // Move rest strip back to anchor
+    if (restStrip && restAnchor) restAnchor.appendChild(restStrip);
+  }
+}
+
+async function liftToggleInfo() {
+  const panel = document.getElementById('liftInfoPanel');
+  const btn = document.getElementById('liftInfoBtn');
+  // Open only — close is via START / CONTINUE button
+  await liftRenderCompare();
+  panel.classList.add('open');
+  btn.classList.add('open');
+  liftSetInfoPanelMode(true);
+}
+
+function liftInfoAction() {
+  const panel = document.getElementById('liftInfoPanel');
+  const btn = document.getElementById('liftInfoBtn');
+  panel.classList.remove('open');
+  btn.classList.remove('open');
+  liftSetInfoPanelMode(false);
+  // Activate first unlogged set if none active yet
+  const ex = LS.exercises[LS.exIdx];
+  if (ex.activeSetIdx === -1) {
+    const firstIdx = ex.sets.findIndex((s, i) => ex.logged[i] === null && !ex.skipped[i]);
+    ex.activeSetIdx = firstIdx !== -1 ? firstIdx : 0;
+    // Populate first working set with target weight
+    const firstWorkIdx = ex.sets.findIndex((s, i) => !s.isWarmup && ex.logged[i] === null && !ex.skipped[i]);
+    if (firstWorkIdx !== -1) {
+      const tipData = DB.coachTips[ex.exerciseId] || null;
+      const recW = tipData && tipData.recommendedWeight ? tipData.recommendedWeight : null;
+      if (recW) ex.inputs[firstWorkIdx].weight = recW;
+    }
+    liftRenderSets();
+    liftRenderPicker();
+  }
+}
+
+async function liftRenderCompare() {
+  if (!LS) return;
+  const ex = LS.exercises[LS.exIdx];
+  const container = document.getElementById('liftInfoCompare');
+  if (!container) return;
+
+  const history = (await Store.get(SK.liftHistory(ex.exerciseId))) || [];
+  const lastSession = history.length ? history[history.length - 1] : null;
+  const prevSets = lastSession ? (lastSession.sets || []).filter(s => !s.isWarmup) : [];
+  const todaySets = ex.sets.map((s, i) => ({s, i})).filter(({s}) => !s.isWarmup);
+  const wuSets = ex.sets.filter(s => s.isWarmup);
+
+  const tipData = DB.coachTips[ex.exerciseId] || null;
+  const recW = tipData && tipData.recommendedWeight ? tipData.recommendedWeight : null;
+
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const prevDate = lastSession ? (() => {
+    const d = new Date(lastSession.date + 'T12:00:00');
+    return `${d.getDate()} ${months[d.getMonth()]}`;
+  })() : null;
+
+  const cellStyle = `font-family:var(--fc);font-size:13px;font-weight:600;padding:5px 0;`;
+  const lblStyle = `font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding-bottom:4px;`;
+
+  let html = `<div style="padding:12px 14px;">`;
+
+  // Table
+  html += `<div style="display:grid;grid-template-columns:1fr 2fr 1fr 2fr;gap:0 8px;">`;
+
+  // Header row
+  html += `<div style="${lblStyle}color:var(--td);">Set</div>`;
+  html += `<div style="${lblStyle}color:var(--tp);">Target</div>`;
+  html += `<div style="${lblStyle}color:var(--td);text-align:center;">Change</div>`;
+  html += `<div style="${lblStyle}color:var(--td);">${prevDate || 'Previous'}</div>`;
+
+  // Data rows
+  todaySets.forEach(({s, i}, pos) => {
+    const targetW = recW || (prevSets[pos] ? prevSets[pos].weight : ex.inputs[i]?.weight);
+    const targetR = s.maxReps || s.minReps;
+    const prev = prevSets[pos];
+
+    let arrow, arrowColor;
+    if (!prev) {
+      arrow = '—'; arrowColor = 'var(--td)';
+    } else if (targetW > prev.weight || targetR > prev.reps) {
+      arrow = '↑'; arrowColor = 'var(--o300)';
+    } else if (targetW < prev.weight || targetR < prev.reps) {
+      arrow = '↓'; arrowColor = 'var(--warn)';
+    } else {
+      arrow = '→'; arrowColor = 'var(--tp)';
+    }
+
+    const todayColor = arrow === '↑' ? 'var(--o300)' : arrow === '↓' ? 'var(--warn)' : 'var(--tp)';
+
+    html += `<div style="${cellStyle}color:var(--td);font-size:11px;">${pos + 1}</div>`;
+    html += `<div style="${cellStyle}color:${todayColor};">${targetW}kg × ${targetR}</div>`;
+    html += `<div style="${cellStyle}color:${arrowColor};font-size:15px;text-align:center;">${arrow}</div>`;
+    html += `<div style="${cellStyle}color:var(--td);">${prev ? `${prev.weight}kg × ${prev.reps}` : '—'}</div>`;
+  });
+
+  html += `</div></div>`;
+  container.innerHTML = html;
 }
 
 async function liftSaveSession() {
@@ -4541,9 +4974,10 @@ async function liftSaveSession() {
   dayState.lifts.push({
     workoutId: LS.workoutId, name: LS.workoutName,
     startedAt: LS.startedAt, endedAt: nowISO(), status: 'completed',
+    notes: LS.sessionNote || '',
     exercises: LS.exercises.map(ex=>({
       exerciseId: ex.exerciseId, name: ex.name,
-      sets: ex.sets.map((s,i)=>ex.logged[i]?{...s,...ex.logged[i],logged:true}:{...s,logged:false,skipped:ex.skipped[i]}),
+      sets: ex.sets.map((s,i)=>ex.logged[i]?{...s,...ex.logged[i],logged:true,note:(ex.setNotes||[])[i]||''}:{...s,logged:false,skipped:ex.skipped[i],note:(ex.setNotes||[])[i]||''}),
     })),
   });
   saveDayLog();
@@ -4617,23 +5051,9 @@ async function liftEndExercise() {
   const isLastEx = LS.exIdx === LS.exercises.length - 1;
 
   if (isLastEx) {
-    const totalOutstanding = LS.exercises.reduce((n, e) => {
-      return n + e.sets.filter((s,i)=>!s.isWarmup&&e.logged[i]===null&&!e.skipped[i]).length;
-    }, 0);
-    if (totalOutstanding > 0) {
-      const exCount = LS.exercises.filter(e=>e.sets.some((s,i)=>!s.isWarmup&&e.logged[i]===null&&!e.skipped[i])).length;
-      document.getElementById('finishWarnSub').textContent =
-        `${totalOutstanding} working set${totalOutstanding>1?'s':''} across ${exCount} exercise${exCount>1?'s':''} not logged.`;
-      document.getElementById('finishWarnPartialOpt').style.display = '';
-      _baseOpenSheet('finishWarnOv');
-      return;
-    }
-    // All done — show save confirmation without partial option
-    document.getElementById('finishWarnSub').textContent = 'All sets done. Save this session?';
-    document.getElementById('finishWarnPartialOpt').style.display = 'none';
-    _baseOpenSheet('finishWarnOv');
+    liftOpenSummary();
   } else {
-    liftProcessExercise(ex);
+    await liftProcessExercise(ex);
     clearInterval(LS.restTimer);
     LS.restRemaining = 0;
     const restStrip = document.getElementById('liftRestStrip');
@@ -4643,7 +5063,7 @@ async function liftEndExercise() {
 }
 
 // Process a single exercise on end — skip originals, remove added unlogged sets
-function liftProcessExercise(ex) {
+async function liftProcessExercise(ex) {
   ex.locked = true;
   const toRemove = [];
   ex.sets.forEach((s, i) => {
@@ -4658,6 +5078,17 @@ function liftProcessExercise(ex) {
     ex.logged.splice(ri,1); ex.skipped.splice(ri,1);
   }
   ex.activeSetIdx = -1;
+  // Save this exercise's history immediately so data persists even if app is closed
+  await saveLiftHistory([ex]);
+}
+
+// Write LS state to liftPartial store (without destroying LS)
+async function saveLiveSessionToPartial() {
+  if (!LS) return;
+  const snap = JSON.parse(JSON.stringify(LS));
+  snap.savedAt = nowISO();
+  snap.pausedAt = nowISO();
+  await savePartial(snap);
 }
 
 async function liftCloseAndSave() {
@@ -4671,11 +5102,108 @@ async function liftCloseAndSave() {
   homeRender();
 }
 
+function liftSummaryPause() {
+  closeSheet('finishWarnOv');
+  // Reuse closeLiftScreen logic — it handles timer pause and partial save
+  closeLiftScreen();
+}
+
+
+function liftOpenSummary() {
+  if (!LS) return;
+
+  // Workout name + duration
+  document.getElementById('sumWorkoutName').textContent = LS.workoutName || 'SESSION';
+  const startMs = new Date(LS.startedAt).getTime();
+  const nowMs = Date.now();
+  const durMins = Math.round((nowMs - startMs) / 60000);
+  const durStr = durMins < 60
+    ? `${durMins} min`
+    : `${Math.floor(durMins/60)}h ${durMins%60}m`;
+  document.getElementById('sumMeta').textContent = `${durStr}`;
+
+  // Per-exercise recap
+  const exList = document.getElementById('sumExList');
+  exList.innerHTML = '';
+  LS.exercises.forEach(ex => {
+    const workingSets = ex.sets.map((s,i)=>({s,i})).filter(({s})=>!s.isWarmup);
+    const logged = workingSets.filter(({i})=>ex.logged[i]!==null).length;
+    const skipped = workingSets.filter(({i})=>ex.skipped[i]).length;
+    const total = workingSets.length;
+    const allDone = logged === total;
+    const topSet = workingSets
+      .filter(({i})=>ex.logged[i]!==null)
+      .reduce((best,{i})=>{
+        const l = ex.logged[i];
+        if (!best || l.weight > best.weight) return l;
+        return best;
+      }, null);
+
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--i700);';
+
+    const left = document.createElement('div');
+    const nameEl = document.createElement('div');
+    nameEl.style.cssText = `font-family:var(--fc);font-size:13px;font-weight:600;color:${allDone?'var(--tp)':'var(--td)'};`;
+    nameEl.textContent = ex.name;
+    left.appendChild(nameEl);
+    if (topSet) {
+      const sub = document.createElement('div');
+      sub.style.cssText = 'font-family:var(--fc);font-size:11px;color:var(--td);margin-top:1px;';
+      sub.textContent = `Top set: ${topSet.weight}kg × ${topSet.reps}`;
+      left.appendChild(sub);
+    }
+
+    const right = document.createElement('div');
+    right.style.cssText = 'text-align:right;flex-shrink:0;margin-left:12px;';
+    const setsEl = document.createElement('div');
+    setsEl.style.cssText = `font-family:var(--fc);font-size:13px;font-weight:700;color:${allDone?'var(--o300)':'var(--warn)'};`;
+    setsEl.textContent = `${logged}/${total}`;
+    const setsLbl = document.createElement('div');
+    setsLbl.style.cssText = 'font-family:var(--fc);font-size:10px;color:var(--td);';
+    setsLbl.textContent = skipped > 0 ? `${skipped} skipped` : 'sets';
+    right.appendChild(setsEl);
+    right.appendChild(setsLbl);
+
+    row.appendChild(left);
+    row.appendChild(right);
+    exList.appendChild(row);
+  });
+
+  // Flags
+  const totalSkipped = LS.exercises.reduce((n,ex)=>
+    n+ex.sets.filter((s,i)=>!s.isWarmup&&ex.skipped[i]).length, 0);
+  const totalUnlogged = LS.exercises.reduce((n,ex)=>
+    n+ex.sets.filter((s,i)=>!s.isWarmup&&ex.logged[i]===null&&!ex.skipped[i]).length, 0);
+  const flagsEl = document.getElementById('sumFlags');
+  const flagsText = document.getElementById('sumFlagsText');
+  const partialBtn = document.getElementById('sumPartialBtn');
+
+  const flagParts = [];
+  if (totalUnlogged > 0) flagParts.push(`${totalUnlogged} set${totalUnlogged>1?'s':''} not logged — will be marked as skipped`);
+  if (totalSkipped > 0 && totalUnlogged === 0) flagParts.push(`${totalSkipped} set${totalSkipped>1?'s':''} skipped`);
+
+  if (flagParts.length > 0) {
+    flagsEl.style.display = '';
+    flagsText.textContent = flagParts.join('. ') + '.';
+    partialBtn.style.display = '';
+  } else {
+    flagsEl.style.display = 'none';
+    partialBtn.style.display = 'none';
+  }
+
+  // Clear notes field
+  document.getElementById('sumNotes').value = '';
+
+  _baseOpenSheet('finishWarnOv');
+}
+
 // ── Finish warning actions ──
 async function liftFinishAnyway() {
   if (!LS) return;
+  LS.sessionNote = (document.getElementById('sumNotes').value || '').trim();
   closeSheet('finishWarnOv');
-  LS.exercises.forEach(ex => liftProcessExercise(ex));
+  for (const ex of LS.exercises) await liftProcessExercise(ex);
   clearInterval(LS.restTimer);
   LS.restRemaining = 0;
   const restStrip = document.getElementById('liftRestStrip');
@@ -4739,6 +5267,12 @@ function liftNavExercise(dir) {
   const next = LS.exIdx + dir;
   if (next < 0 || next >= LS.exercises.length) return;
   LS.exIdx = next;
+  // Close info panel when changing exercise and restore set list
+  const infoPanelNav = document.getElementById('liftInfoPanel');
+  const infoBtnNav = document.getElementById('liftInfoBtn');
+  infoPanelNav.classList.remove('open');
+  infoBtnNav.classList.remove('open');
+  liftSetInfoPanelMode(false);
   liftRenderAll();
 }
 
@@ -4787,14 +5321,48 @@ function liftRenderAll() {
     }, true);
   }
 
+  document.getElementById('liftWsName').textContent = LS.workoutName || 'SESSION';
   document.getElementById('liftExName').textContent = ex.name;
   document.getElementById('liftExMeta').textContent = ex.muscles.length
-    ? ex.muscles.join(' · ') : `${LS.workoutName} · ${LS.exIdx+1}/${LS.exercises.length}`;
+    ? `${ex.muscles.join(' · ')} · Ex ${LS.exIdx+1}/${LS.exercises.length}`
+    : `Ex ${LS.exIdx+1}/${LS.exercises.length}`;
+
+  // Info button (tip + history) — hide once exercise is locked/done
+  const tipData = DB.coachTips[ex.exerciseId] || null;
+  const tip = typeof tipData === 'string' ? tipData : (tipData && tipData.tip) || '';
+  const recommendedWeight = tipData && tipData.recommendedWeight ? tipData.recommendedWeight : null;
+  const infoBtn = document.getElementById('liftInfoBtn');
+  const tipSection = document.getElementById('liftInfoTipSection');
+  const infoPanel = document.getElementById('liftInfoPanel');
+  infoBtn.style.display = ex.locked ? 'none' : '';
+  if (ex.locked) {
+    infoPanel.classList.remove('open');
+    infoBtn.classList.remove('open');
+  }
+  if (tip) {
+    tipSection.style.display = '';
+    document.getElementById('liftTipText').textContent = tip;
+  } else {
+    tipSection.style.display = 'none';
+  }
+
+  // Auto-open panel when exercise first loads (no sets logged yet) and not locked
+  const anyLoggedForOpen = ex.logged.some(l => l !== null);
+  if (!anyLoggedForOpen && !ex.locked) {
+    liftRenderCompare().then(() => {
+      infoPanel.classList.add('open');
+      infoBtn.classList.add('open');
+      liftSetInfoPanelMode(true);
+    });
+    ex.activeSetIdx = -1;
+  } else if (!infoPanel.classList.contains('open')) {
+    liftSetInfoPanelMode(false);
+  }
 
   document.getElementById('liftPrevBtn').classList.toggle('disabled', LS.exIdx===0);
   const isLast = LS.exIdx===LS.exercises.length-1;
   const nextBtn = document.getElementById('liftNextBtn');
-  nextBtn.textContent = isLast ? 'Finish' : 'Next ›';
+  nextBtn.textContent = isLast ? 'Finish' : '›';
   nextBtn.classList.remove('disabled');
   nextBtn.onclick = isLast ? ()=>liftEndExercise() : ()=>liftNavExercise(1);
 
@@ -4804,7 +5372,7 @@ function liftRenderAll() {
   // Cues
   const cues = ex.cues || [];
   const cuesWrap = document.getElementById('liftCuesWrap');
-  cuesWrap.style.display = cues.length ? 'flex' : 'none';
+  cuesWrap.style.display = cues.length ? 'block' : 'none';
   document.getElementById('liftCuesStrip').innerHTML = cues.map(c=>`<span class="lift-cue-pill">${c}</span>`).join('');
 
   // Equipment label
@@ -4867,6 +5435,12 @@ function liftRenderSets() {
   const endStyle = allWorkingDone ? `color:var(--o300);border-color:var(--o800);` : '';
   html += `<button class="lift-end-ex-btn${allWorkingDone?' show':''}" id="liftEndExBtn" onclick="liftEndExercise()" style="${endStyle}">${endLabel}</button>`;
   list.innerHTML = html;
+  // Scroll active set to centre of viewport
+  const activeIdx = ex.activeSetIdx;
+  if (activeIdx !== -1) {
+    const activeCard = document.getElementById(`ls${activeIdx}`);
+    if (activeCard) activeCard.scrollIntoView({behavior:'smooth', block:'center'});
+  }
   if (allWorkingDone) {
     const btn = document.getElementById('liftEndExBtn');
     if (btn) btn.scrollIntoView({behavior:'smooth', block:'nearest'});
@@ -4890,16 +5464,38 @@ function liftBuildCard(idx, ex, WU) {
   if (active) {
     // Working set index (0-based) for matching against previous session
     const workingSetIdx = idx - WU;
-    const prevSet = (!isWu && ex.lastSession?.sets) ? (ex.lastSession.sets[workingSetIdx] || null) : null;
-    const prevHtml = (prevSet && !logged)
-      ? `<span class="lift-prev-ref">Prev: <b>${liftFmt(prevSet.weight)}kg × ${prevSet.reps}</b></span>`
-      : '';
+    const prevWorkSets = ex.lastSession?.sets ? ex.lastSession.sets.filter(s=>!s.isWarmup) : [];
+    const prevSet = !isWu ? (prevWorkSets[workingSetIdx] || null) : null;
+
+    // Target weight — coach rec or programme weight
+    const tipData = DB.coachTips[ex.exerciseId] || null;
+    const recW = tipData && tipData.recommendedWeight ? tipData.recommendedWeight : null;
+    const targetW = !isWu ? (recW || set.weight) : null;
+    const targetR = !isWu ? (set.maxReps || set.minReps) : null;
+
+    // Target vs prev comparison for label
+    let arrow = '', targetColor = 'var(--tp)';
+    if (!isWu && prevSet && targetW !== null) {
+      if (targetW > prevSet.weight || targetR > prevSet.reps) { arrow = ' ↑'; targetColor = 'var(--o300)'; }
+      else if (targetW < prevSet.weight || targetR < prevSet.reps) { arrow = ' ↓'; targetColor = 'var(--warn)'; }
+    }
+
+    const compactRef = !isWu && (targetW !== null) ? `<div style="display:grid;grid-template-columns:auto 1fr auto;gap:3px 8px;margin-left:10px;flex-shrink:0;align-items:baseline;">
+      <span style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tp);">Target</span>
+      <span style="font-family:var(--fc);font-size:12px;font-weight:600;color:${targetColor};">${targetW}kg × ${targetR}</span>
+      <span style="font-family:var(--fc);font-size:13px;color:${targetColor};">${arrow}</span>
+      ${prevSet ? `
+      <span style="font-family:var(--fc);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--td);">Previous</span>
+      <span style="font-family:var(--fc);font-size:12px;color:var(--td);">${prevSet.weight}kg × ${prevSet.reps}</span>
+      <span></span>` : ''}
+    </div>` : '';
+
     const repRange = !isWu ? `<span class="lift-rep-range">${set.minReps}–${set.maxReps}</span>` : '';
     const hasTargetRpe = !isWu && ex.targetRpe !== null;
     const rpeTarget = hasTargetRpe ? `<span class="lift-rpe-target">Target ${ex.targetRpe}</span>` : '';
     const sidesToggleBtn = ex.isUnilateral ? `<button onclick="liftToggleSidesDiffered(${idx})" style="background:${inp.sidesDiffered?'var(--o900)':'none'};border:1px solid ${inp.sidesDiffered?'var(--o700)':'var(--i600)'};border-radius:5px;color:${inp.sidesDiffered?'var(--o300)':'var(--td)'};font-family:var(--fc);font-size:10px;font-weight:600;letter-spacing:1px;padding:5px 10px;cursor:pointer;flex-shrink:0;">L ≠ R</button>` : '';
 
-    // Weight row — always the same structure
+    // Weight row
     const weightRow=`<div class="lift-a-row">
       <div class="lift-a-lbl"><span class="lift-a-num-lbl">${numLbl}</span></div>
       <div class="lift-a-content">
@@ -4907,7 +5503,7 @@ function liftBuildCard(idx, ex, WU) {
         <input class="lift-w-inp" id="liftActiveW" type="number" inputmode="decimal" value="${liftFmt(inp.weight)}" oninput="liftOnWeightTyped()" onfocus="this.select()">
         <span class="lift-w-unit">kg</span>
         <button class="lift-nudge" onclick="liftNudgeWeight(2.5)">+</button>
-        ${prevHtml}
+        ${compactRef}
       </div>
     </div>`;
 
@@ -4943,10 +5539,11 @@ function liftBuildCard(idx, ex, WU) {
     const logCls = logged ? 'lift-log-btn lift-update-btn' : (isWu ? 'lift-log-btn lift-log-wu-btn' : 'lift-log-btn');
 
     // Action row — always last, skip left / log right
+    const noteInd = (ex.setNotes||[])[idx] ? `<button class="lift-note-btn has-note" onclick="liftOpenSetNote(${idx})" title="Edit note">📝</button>` : `<button class="lift-note-btn" onclick="liftOpenSetNote(${idx})" title="Add note">📝</button>`;
     const actionRow=`<div class="lift-action-row">
       <div></div>
       <div class="lift-action-content">
-        ${skipBtn}${removeBtn}${sidesToggleBtn}
+        ${skipBtn}${removeBtn}${sidesToggleBtn}${noteInd}
         <button class="${logCls}" onclick="liftLogSet(${idx})">${logLbl}</button>
       </div>
     </div>`;
@@ -4968,7 +5565,7 @@ function liftBuildCard(idx, ex, WU) {
       const sidesActionRow=`<div class="lift-action-row">
         <div></div>
         <div class="lift-action-content">
-          ${sidesToggleBtn}${skipBtn}${removeBtn}
+          ${sidesToggleBtn}${skipBtn}${removeBtn}${noteInd}
           <button class="${logCls}" style="flex:1;" onclick="liftLogSet(${idx})">${logLbl}</button>
         </div>
       </div>`;
@@ -4983,7 +5580,7 @@ function liftBuildCard(idx, ex, WU) {
       </div></div>`;
     }
 
-    // Standard layout — all states (warmup active, working active, warmup update, working update)
+    // Standard layout
     return `<div class="lift-set-card ${wuCls} ${actCls}${logged?' is-logged':''}" id="ls${idx}"><div class="lift-a-body">
       ${weightRow}
       <div class="lift-a-divider"></div>
@@ -5012,8 +5609,9 @@ function liftBuildCard(idx, ex, WU) {
   const firstUnhandled=ex.sets.findIndex((s,i)=>i<idx&&ex.logged[i]===null&&!ex.skipped[i]);
   const clickable=firstUnhandled===-1;
 
+  const noteFlag = (ex.setNotes||[])[idx] ? `<span style="font-size:11px;opacity:.7;" title="${ex.setNotes[idx]}">📝</span>` : '';
   return `<div class="lift-set-card ${wuCls} ${logged?'is-logged':''}" id="ls${idx}" ${clickable?`onclick="liftActivateSet(${idx})"`:''} style="${!clickable?'opacity:.35;cursor:not-allowed;':''}">
-    <div class="lift-s-row"><span class="lift-s-num">${numLbl}</span>${info}${right}</div>
+    <div class="lift-s-row"><span class="lift-s-num">${numLbl}</span>${info}${right}${noteFlag}</div>
   </div>`;
 }
 
@@ -5084,7 +5682,13 @@ function liftLogSet(idx) {
       if (WU>0 && !ex.warmupsHidden) ex.warmupsHidden=true;
       const nextWork=ex.sets.findIndex((s,i)=>i>idx&&!s.isWarmup&&ex.logged[i]===null&&!ex.skipped[i]);
       if (nextWork!==-1) {
-        ex.inputs[nextWork].weight=inp.weight; // sticky within working sets
+        // Smart population: use target if current set met target, else use what was actually logged
+        const tipData = DB.coachTips[ex.exerciseId] || null;
+        const recW = tipData && tipData.recommendedWeight ? tipData.recommendedWeight : null;
+        const targetW = recW || set.weight;
+        const targetR = set.maxReps || set.minReps;
+        const metTarget = inp.weight >= targetW && inp.reps >= targetR;
+        ex.inputs[nextWork].weight = metTarget ? targetW : inp.weight;
         ex.activeSetIdx=nextWork;
       } else {
         // Last working set logged — collapse, no auto-advance
@@ -5303,7 +5907,7 @@ function liftRenderPicker(){
 
   // Hide plate picker when editing a logged set
   const activeIsLogged=ex.logged[ex.activeSetIdx]!==null;
-  const pickerEl=document.querySelector('.lift-plate-picker');
+  const pickerEl=document.getElementById('liftPlatePickerEl');
   if(pickerEl)pickerEl.style.display=activeIsLogged?'none':'';
 
   // Diff pills
@@ -5713,6 +6317,7 @@ function exPickerAdd(exerciseId) {
     sets: defaultSets.map(s=>({...s})),
     logged: defaultSets.map(()=>null),
     skipped: defaultSets.map(()=>false),
+    setNotes: defaultSets.map(()=>''),
     inputs: defaultSets.map(s=>({weight:s.weight,reps:Math.round((s.minReps+s.maxReps)/2),rpe:null})),
     physicalPlates: [], activeSetIdx: 0,
     warmupsHidden: false, showWarmups: false, locked: false,
@@ -6572,7 +7177,9 @@ function devNotesExport() {
 document.addEventListener('DOMContentLoaded', () => appStart());
 
 // Register service worker for offline use + update notifications
-if ('serviceWorker' in navigator) {
+// Skip SW registration when not on GitHub Pages (e.g. preview iframe / local testing)
+const _onGHPages = window.location.hostname.endsWith('github.io');
+if ('serviceWorker' in navigator && _onGHPages) {
   window.addEventListener('load', async () => {
     try {
       const reg = await navigator.serviceWorker.register('./sw.js');
@@ -6629,7 +7236,7 @@ window.applyUpdate = function() {
   <div style="text-align:center;padding-top:8px;">
     <div style="display:inline-flex;align-items:baseline;gap:8px;">
       <div class="wordmark">BODY<span>BUILDER</span></div>
-      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.7</span>
+      <span style="font-family:var(--fc);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.45);">v1.8</span>
     </div>
     <div style="font-family:var(--fc);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--td);margin-top:4px;" id="repeatDate"></div>
   </div>
